@@ -1,0 +1,327 @@
+.impact-page {
+  min-height: 100vh;
+}
+
+.impact-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  padding: 80px 40px;
+}
+
+.impact-hero h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+  font-weight: 800;
+}
+
+.impact-hero p {
+  font-size: 18px;
+  opacity: 0.95;
+}
+
+.impact-intro {
+  padding: 60px 40px;
+  background: white;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.intro-content {
+  text-align: center;
+}
+
+.intro-content h2 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.intro-content p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.impact-areas {
+  padding: 60px 40px;
+  background: #f8f9fa;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.impact-areas h2 {
+  text-align: center;
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.impact-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.impact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.impact-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.impact-card h3 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.impact-card p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.impact-metric {
+  background: #f0f4ff;
+  color: #667eea;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.success-stories {
+  padding: 60px 40px;
+  background: white;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.success-stories h2 {
+  text-align: center;
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.story-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-5px);
+}
+
+.story-card h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.story-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  opacity: 0.95;
+}
+
+.story-impact {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.impact-stats {
+  padding: 60px 40px;
+  background: #f8f9fa;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.impact-stats h2 {
+  text-align: center;
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.stat {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.stat-number {
+  font-size: 32px;
+  color: #667eea;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.impact-commitment {
+  padding: 60px 40px;
+  background: white;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.impact-commitment h2 {
+  text-align: center;
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+.commitment-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.commitment-item {
+  text-align: center;
+}
+
+.commitment-item h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.commitment-item p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.impact-cta {
+  text-align: center;
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.impact-cta h2 {
+  font-size: 36px;
+  margin-bottom: 15px;
+  font-weight: 800;
+}
+
+.impact-cta p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  opacity: 0.95;
+}
+
+.btn {
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background: white;
+  color: #667eea;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn.large {
+  padding: 15px 50px;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .impact-hero {
+    padding: 40px 20px;
+  }
+
+  .impact-hero h1 {
+    font-size: 32px;
+  }
+
+  .impact-intro,
+  .impact-areas,
+  .success-stories,
+  .impact-stats,
+  .impact-commitment {
+    padding: 40px 20px;
+  }
+
+  .areas-grid,
+  .stories-grid,
+  .stats-grid,
+  .commitment-content {
+    gap: 20px;
+  }
+
+  .impact-cta {
+    padding: 40px 20px;
+  }
+
+  .impact-cta h2 {
+    font-size: 24px;
+  }
+}

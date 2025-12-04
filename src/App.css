@@ -1,0 +1,92 @@
+/* NAVBAR CONTAINER */
+.navbar {
+  width: 100%;
+  height: 70px;
+  background: #0C3B2E; /* Deep elegant green */
+  color: white;
+  padding: 0 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* LOGO */
+.nav-logo h3 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* NAV LINKS */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links li a {
+  color: #e8f7f1;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #8ff0c6;
+}
+
+/* BUTTON CONTAINER */
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+/* BUTTON STYLE */
+.btn {
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+  border: 2px solid #8ff0c6;
+  color: #8ff0c6;
+}
+
+.login-btn:hover {
+  background: #8ff0c6;
+  color: #063f2d;
+}
+
+/* SIGNUP BUTTON */
+.signup-btn {
+  background: #8ff0c6;
+  color: #063f2d;
+}
+
+.signup-btn:hover {
+  background: #c9ffea;
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+  .nav-links {
+    display: none; 
+  }
+}
+.kio{
+  background-image: url(./assets/imagedonate3.avif);
+  width: 100%;
+  height: 740px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
