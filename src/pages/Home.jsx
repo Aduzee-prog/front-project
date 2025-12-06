@@ -54,9 +54,6 @@ const Home = () => {
             </div>
           )}
         </div>
-        {/* <div className="hero-image">
-          <img src="/src/assets/imagedonate2.avif" alt="Charity" />
-        </div> */}
       </section>
 
       <section className="features">
