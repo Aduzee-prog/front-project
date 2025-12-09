@@ -68,7 +68,7 @@ const Signup = () => {
           id: data.user?.id || Math.random().toString(36).substr(2, 9),
         }
         dispatch(signupSuccess(userData))
-        setSuccessMessage('Sign up successful!, please check your inbox for verification')
+        setSuccessMessage('Sign up successful!, please check your inbox for verification.')
         
         setTimeout(() => {
           navigate('/signin')
