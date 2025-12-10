@@ -9,10 +9,12 @@ const Campaign = () => {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [sortBy, setSortBy] = useState('newest')
 
-  const categories = ['All', ...new Set(campaigns.map((c) => c.category))]
+  // Only show active/approved campaigns to donors
+  const activeCampaigns = campaigns.filter((c) => c.status === 'active' || c.status === 'approved')
+  const categories = ['All', ...new Set(activeCampaigns.map((c) => c.category))]
 
   const filteredCampaigns = useMemo(() => {
-    let filtered = campaigns.filter((campaign) => {
+    let filtered = activeCampaigns.filter((campaign) => {
       const matchesSearch =
         campaign.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         campaign.ngoName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -32,7 +34,7 @@ const Campaign = () => {
     }
 
     return filtered
-  }, [campaigns, searchTerm, selectedCategory, sortBy])
+  }, [activeCampaigns, searchTerm, selectedCategory, sortBy])
 
   return (
     <div className="campaigns-page">

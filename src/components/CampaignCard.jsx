@@ -10,7 +10,7 @@ const CampaignCard = ({ campaign }) => {
       <div className="campaign-card">
         <div className="campaign-image">
           <img src={campaign.image} alt={campaign.title} />
-          <span className="campaign-status">{campaign.verified ? '✓ Verified' : 'Pending'}</span>
+          <span className="campaign-status">{campaign.status === 'active' || campaign.status === 'approved' ? '✓ Active' : campaign.status === 'pending' ? 'Pending' : 'Rejected'}</span>
         </div>
         <div className="campaign-content">
           <div className="campaign-header">
