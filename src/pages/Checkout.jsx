@@ -5,6 +5,7 @@ import { addDonation, clearCurrentDonation } from '../store/slices/donationSlice
 import { updateCampaignFunding } from '../store/slices/campaignSlice'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import donationService from '../services/donationService'
 import '../styles/Checkout.css'
 
 const paymentSchema = Yup.object().shape({
@@ -26,6 +27,7 @@ const Checkout = () => {
   const donation = useSelector((state) => state.donations.currentDonation)
   const [isProcessing, setIsProcessing] = useState(false)
   const [paymentSuccess, setPaymentSuccess] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   if (!donation) {
     return (
@@ -41,37 +43,60 @@ const Checkout = () => {
     )
   }
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     setIsProcessing(true)
+    setErrorMessage('')
 
-    setTimeout(() => {
-      setIsProcessing(false)
-      setPaymentSuccess(true)
-
-      dispatch(
-        addDonation({
+    setTimeout(async () => {
+      try {
+        const donationData = {
           campaignId: donation.campaignId,
           campaignTitle: donation.campaignTitle,
           amount: donation.amount,
           donorName: donation.donorName,
           donorEmail: donation.donorEmail,
           ngoName: donation.ngoName,
+          isAnonymous: donation.isAnonymous || false,
           paymentMethod: 'card',
           cardLast4: values.cardNumber.slice(-4),
-        })
-      )
+          status: 'completed',
+        }
 
-      dispatch(
-        updateCampaignFunding({
-          campaignId: donation.campaignId,
-          amount: donation.amount,
-        })
-      )
+        // Submit donation to backend to trigger email notifications
+        await donationService.submitDonation(donationData)
 
-      setTimeout(() => {
-        dispatch(clearCurrentDonation())
-        navigate('/donor-dashboard')
-      }, 2000)
+        setIsProcessing(false)
+        setPaymentSuccess(true)
+
+        dispatch(
+          addDonation({
+            campaignId: donation.campaignId,
+            campaignTitle: donation.campaignTitle,
+            amount: donation.amount,
+            donorName: donation.donorName,
+            donorEmail: donation.donorEmail,
+            ngoName: donation.ngoName,
+            paymentMethod: 'card',
+            cardLast4: values.cardNumber.slice(-4),
+          })
+        )
+
+        dispatch(
+          updateCampaignFunding({
+            campaignId: donation.campaignId,
+            amount: donation.amount,
+          })
+        )
+
+        setTimeout(() => {
+          dispatch(clearCurrentDonation())
+          navigate('/donor-dashboard')
+        }, 2000)
+      } catch (error) {
+        setIsProcessing(false)
+        setErrorMessage(error.response?.data?.message || 'Failed to process donation. Please try again.')
+        console.error('Donation submission error:', error)
+      }
     }, 2000)
   }
 
@@ -82,7 +107,7 @@ const Checkout = () => {
           <div className="success-icon">✓</div>
           <h2>Payment Successful!</h2>
           <p>Thank you for your generous donation of ₦{donation.amount.toLocaleString()}</p>
-          <p className="success-detail">A confirmation email will be sent to {donation.donorEmail || 'your email'}</p>
+          <p className="success-detail">A confirmation email has been sent to {donation.donorEmail || 'your email'} and to the NGO</p>
           <p className="redirect-message">Redirecting to dashboard...</p>
         </div>
       </div>
@@ -94,6 +119,8 @@ const Checkout = () => {
       <div className="checkout-wrapper">
         <div className="checkout-main">
           <h1>Complete Your Donation</h1>
+
+          {errorMessage && <div className="error-message" style={{ marginBottom: '20px', padding: '10px', backgroundColor: '#fee', color: '#c33', borderRadius: '4px' }}>{errorMessage}</div>}
 
           <div className="order-summary">
             <div className="summary-item">
