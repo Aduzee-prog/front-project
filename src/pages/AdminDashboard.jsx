@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../store/slices/authSlice'
@@ -24,21 +24,7 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
-    if (user && user.role === 'admin') {
-      fetchPendingNGOs()
-      fetchApprovedNGOs()
-      fetchContactMessages()
-
-      const refreshInterval = setInterval(() => {
-        fetchContactMessages()
-      }, 10000)
-
-      return () => clearInterval(refreshInterval)
-    }
-  }, [user])
-
-  const fetchPendingNGOs = async () => {
+  const fetchPendingNGOs = useCallback(async () => {
     setLoading(true)
     try {
       const response = await fetch(`${API_URL}/admin/pending-ngos`)
@@ -52,31 +38,45 @@ const AdminDashboard = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [reduxPendingNGOs])
 
-  const fetchApprovedNGOs = async () => {
+  const fetchApprovedNGOs = useCallback(async () => {
     try {
       const response = await fetch(`${API_URL}/admin/all-ngos`)
       const data = await response.json()
       if (data.success) {
-        const approved = data.data.filter(ngo => ngo.status === 'active' || ngo.verified)
-        setApprovedNGOs(approved)
+        setApprovedNGOs(data.data || [])
       }
     } catch {
+      setError('Failed to fetch approved NGOs')
       setApprovedNGOs(reduxNGOs)
     }
-  }
+  }, [reduxNGOs])
 
-  const fetchContactMessages = async () => {
+  const fetchContactMessages = useCallback(async () => {
     try {
       const response = await contactService.getAllMessages()
       if (response.data.success) {
-        setContactMessages(response.data.data)
+        setContactMessages(response.data.data || [])
       }
-    } catch (err) {
-      console.error('Failed to fetch contact messages:', err)
+    } catch {
+      setError('Failed to fetch contact messages')
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    if (user && user.role === 'admin') {
+      fetchPendingNGOs()
+      fetchApprovedNGOs()
+      fetchContactMessages()
+
+      const refreshInterval = setInterval(() => {
+        fetchContactMessages()
+      }, 10000)
+
+      return () => clearInterval(refreshInterval)
+    }
+  }, [user, fetchPendingNGOs, fetchApprovedNGOs, fetchContactMessages])
 
   const handleMarkAsAttended = async (messageId) => {
     try {
